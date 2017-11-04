@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Поделитель / Удвоитель</title>
+	<script type="text/javascript">
+        function answer1() {
+        	var ot = Number(document.getElementById("ot").value);
+        	var doc = Number(document.getElementById("do").value);
+        	var rez = ot;
+        	dey = [];
+        	zna = [];
+        	j = 0;
+        	while (rez != doc) {
+        		if (rez % 2 == 0 && rez / 2 >= doc) {
+        			rez /= 2;
+        			zna[j] = rez;
+        			dey[j] = ":2"
+        		}
+        		else {
+        			rez -= 1;
+        			zna[j] = rez;
+        			dey[j] = "-1";
+        		}
+        		j++;
+        	}
+        	document.getElementById("text").innerHTML = "";
+        	for (var i = 0; i < j; i++) {
+        		document.getElementById("text").innerHTML += dey[i]+" | "+zna[i]+"<br>";
+        	}
+        	document.getElementById("text").innerHTML += j;
+        }
+        function answer2() {
+        	var ot = Number(document.getElementById("ot2").value);
+        	var doc = Number(document.getElementById("do2").value);
+        	var rez = doc;
+        	dey = [];
+        	zna = [];
+        	j = 0;
+        	while (rez > ot) {
+        		zna[j] = rez;
+        		if (rez % 2 == 0 && rez / 2 >= ot) {
+        			rez /= 2;
+        			dey[j] = "*2"
+        		}
+        		else {
+        			rez -= 1;
+        			dey[j] = "+1";
+        		}
+        		j++;
+        	}
+        	for (var i = 0; i < dey.length / 2; i++) {
+                var deyc = dey[i];
+                dey[i] = dey[j-i];
+                dey[j-i] = deyc;
+        	}
+        	for (var i = 0; i < dey.length / 2; i++) {
+                var znac = zna[i];
+                zna[i] = zna[j-i];
+                zna[j-i] = znac;
+        	}        	
+        	document.getElementById("text").innerHTML = "";
+        	for (var i = 0; i < j; i++) {
+        		document.getElementById("text").innerHTML += dey[i+1]+" | "+zna[i+1]+"<br>";
+        	}
+        	document.getElementById("text").innerHTML += j;
+        }
+	</script>
+</head>
+<body>
+    Поделитель: Есть: <input type="text" id="ot">, Нужно: <input type="text" id="do">.<br>
+    <input type="button" id="pod" onclick="answer1()"><br>
+    Удвоитель: Есть: <input type="text" id="ot2">, нужно: <input type="text" id="do2">.<br>
+    <input type="button" id="udv" onclick="answer2()"><br>
+    <p id="text">
+</body>
+</html>
